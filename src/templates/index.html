@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ECG Generator</title>
+</head>
+<body>
+    <h2>Generate ECG</h2>
+    <a href="/generate">Generate ECG</a>
+
+    {% if image %}
+        <h3>Result:</h3>
+        <img src="{{ url_for('static', filename=image) }}">
+    {% endif %}
+</body>
+</html>
