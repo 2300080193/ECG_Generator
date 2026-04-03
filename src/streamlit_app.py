@@ -5,26 +5,29 @@ import numpy as np
 import sys
 import os
 
+# -----------------------------
 # Fix import path
-sys.path.append(os.path.abspath(os.path.dirname(__file__)))
+# -----------------------------
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+sys.path.append(BASE_DIR)
 
 from ecg_generator import Generator
 
 # -----------------------------
-# Load model
+# Load model (FIXED PATH)
 # -----------------------------
 noise_dim = 100
-model_path = "checkpoints/generator.pth"
+
+model_path = os.path.join(BASE_DIR, "checkpoints", "generator.pth")
 
 gen = Generator(noise_dim)
-gen.load_state_dict(torch.load(model_path, map_location=torch.device('cpu')))
+gen.load_state_dict(torch.load(model_path, map_location="cpu"))
 gen.eval()
 
 # -----------------------------
 # UI
 # -----------------------------
 st.title("ECG Signal Generator (WGAN)")
-
 st.write("Click the button to generate a synthetic ECG signal")
 
 # Number of samples
